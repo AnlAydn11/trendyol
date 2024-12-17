@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Search Results for "{{ query }}" - Trendyol{% endblock %}
+
+{% block content %}
+<div class="search-results-page">
+    <div class="container">
+        <div class="search-layout">
+            <aside class="filters-sidebar">
+                <form id="filterForm" method="GET" action="{{ url_for('search') }}">
+                    <input type="hidden" name="q" value="{{ query }}">
+                    <div class="filter-section">
+                        <h3>Price Range</h3>
+                        <label class="filter-option">
+                            <input type="radio" name="price_range" value="0-100" {% if price_range == '0-100' %}checked{% endif %}>
+                            <span>0 - 100 TL</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price_range" value="101-200" {% if price_range == '101-200' %}checked{% endif %}>
+                            <span>101 - 200 TL</span>
+                        </label>
+                    </div>
+                    <div class="filter-section">
+                        <h3>Category</h3>
+                        {% for category in categories %}
+                        <label class="filter-option">
+                            <input type="checkbox" name="category" value="{{ category.id }}"
+                                   {% if category.id|string in selected_categories %}checked{% endif %}>
+                            <span>{{ category.name }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="filter-section">
+                        <h3>Brand</h3>
+                        {% for brand in brands %}
+                        <label class="filter-option">
+                            <input type="checkbox" name="brand" value="{{ brand }}"
+                                   {% if brand in selected_brands %}checked{% endif %}>
+                            <span>{{ brand }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="apply-filters-btn">Apply Filters</button>
+                </form>
+            </aside>
+            <section class="search-results-container">
+                <h1 class="search-title">Search Results for "{{ query }}"</h1>
+                <div class="results-count">{{ products|length }} Products Found</div>
+                <div class="product-grid">
+                    {% for product in products %}
+                    <article class="product-card">
+                        <a href="{{ url_for('product_detail', product_id=product.id) }}">
+                            <img src="{{ product.image_url }}" alt="{{ product.title }}">
+                            <h3>{{ product.title }}</h3>
+                            <p>{{ "{:,.2f}".format(product.price) }} TL</p>
+                        </a>
+                    </article>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

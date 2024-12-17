@@ -1,0 +1,445 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f8f8;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Top Bar */
+.top-bar {
+  background-color: #eee;
+  padding: 0.5rem 0;
+}
+
+.top-menu {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.top-menu a {
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* Header */
+.main-header {
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+}
+
+.header-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff6f00;
+  text-decoration: none;
+}
+
+.search-container {
+  flex-grow: 1;
+  margin: 0 2rem;
+}
+
+.search-wrapper {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.search-wrapper input {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+}
+
+.search-wrapper button {
+  background-color: #ff6f00;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.user-actions a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* Navigation */
+.main-nav {
+  background-color: #ff6f00;
+  color: #fff;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem;
+  display: inline-block;
+}
+
+/* Main Content */
+.main-content {
+  padding: 2rem 0;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+.main-footer {
+  background-color: #333;
+  color: #fff;
+  padding: 1.5rem 0;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+/* Product Card */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.product-details {
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.product-details h3 {
+  font-size: 1rem;
+  color: #333;
+}
+
+.product-details p {
+  color: #666;
+}
+
+.product-price {
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #ff6f00;
+}
+
+/* Account Page */
+.account-container {
+  background: #fff;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 1rem auto;
+}
+
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.edit-button {
+  text-decoration: none;
+  background-color: #ff6f00;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.detail-group {
+  margin: 0.8rem 0;
+}
+
+.detail-group label {
+  font-weight: bold;
+  display: block;
+}
+
+.detail-group p {
+  margin-top: 0.3rem;
+  color: #666;
+}
+
+
+@media (max-width: 768px) {
+  .header-grid {
+      flex-direction: column;
+      gap: 1rem;
+  }
+
+  .nav-list {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .search-container {
+      margin: 1rem 0;
+  }
+}
+
+
+/*This is used for showing the old price and then slashing it to show the new price.*/
+.discount-badge {
+  position: absolute;
+  top: 10px; /* Positioned near the top of the image */
+  left: 0;
+  background-color: #ff6f00; /* Orange background */
+  color: #fff; /* White text */
+  padding: 0.3rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.product-price {
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.current-price {
+  font-weight: bold;
+  color: #ff6f00; /* Highlighted in orange */
+  font-size: 1.1rem;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .discount-badge {
+      top: 5px;
+      padding: 0.2rem 0.8rem;
+      font-size: 0.8rem;
+  }
+}
+
+
+/* Categories and Filters Styling */
+.filters-sidebar {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 250px;
+}
+
+/*This makes sure the categories right to the results looks in order.*/
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-option span {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.apply-filters-btn {
+  background-color: #ff6f00;
+  color: #fff;
+  padding: 0.5rem 1rem;
+}
+
+/*Spacing for search layout*/
+.search-layout {
+  display: flex;
+  gap: 2rem;
+}
+
+.search-results-container {
+  flex-grow: 1;
+}
+
+
+
+
+
+
+
+/* Product Page Layout */
+.product-layout {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.product-image {
+  flex: 1;
+  max-width: 50%;
+}
+
+.product-image img {
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-title {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.product-brand {
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.original-price {
+  font-size: 1rem;
+}
+
+.product-actions button {
+  background-color: #ff6f00;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.product-actions button:hover {
+  background-color: #e55a00;
+}
+
+/*This is used in the Related Products Section*/
+.related-products {
+  margin-top: 3rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+}
+
+.product-details h3 {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+
+.product-details p {
+  font-weight: bold;
+  color: #ff6f00;
+}
+
+
+/*We ensured the discount badge only applies to product images because we had a problem related to it*/
+.product-card .discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  background-color: #ff6f00;
+  color: #fff;
+  padding: 0.3rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+/*Prevented the unintended badges elsewhere */
+.discount-badge {
+  display: none;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Trendyol{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    </head>
+    <body>
+        <div class="top-bar">
+            <div class="container">
+                <ul class="top-menu">
+                    <li><a href="#">Seller Center</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Customer Service</a></li>
+                </ul>
+            </div>
+        </div>
+        <header class="main-header">
+            <div class="container header-grid">
+                <div class="logo-container">
+                    <a href="{{ url_for('home') }}" class="logo">Trendyol</a>
+                </div>
+
+                <div class="search-container">
+                    <form action="{{ url_for('search') }}" method="GET">
+                        <div class="search-wrapper">
+                            <input type="text" name="q" placeholder="Search products, brands..." required>
+                            <button type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="user-actions">
+                    <a href="{{ url_for('account') }}" class="action-link"><span>Account</span></a>
+                    <a href="#" class="action-link"><span>Favorites</span></a>
+                    <a href="#" class="action-link cart"><span>Cart</span></a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="main-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="{{url_for('category', category_id=1) }}" class="nav-link">Woman</a></li>
+                    <li><a href="{{url_for('category', category_id=2) }}" class="nav-link">Man</a></li>
+                    <li><a href="{{url_for('category', category_id=3) }}" class="nav-link">Electronics</a></li>
+                    <li><a href="{{url_for('category', category_id=4) }}" class="nav-link">Home&Living</a></li>
+                    <li><a href="{{url_for('category', category_id=5) }}" class="nav-link">Cosmetics</a></li>
+                </ul>
+            </div>
+        </nav>
+        <main class="main-content">
+            <div class="container">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+        <footer class="main-footer">
+            <div class="container footer-grid">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers in Trendyol</a></li>
+                        <li><a href="#">News</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Services</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Shopping</h3>
+                    <ul>
+                        <li><a href="#">Brands</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    </body>
+</html>

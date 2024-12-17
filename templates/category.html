@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}{{ category.name }} -Trendyol{% endblock %}
+{% block content %}
+    <div class="category-page">
+        <header class="category-header">
+            <div class="breadcrumb">
+                <a href="{{ url_for('home')}}">Home</a>
+                <span class="separator">/</span>
+                <span class="current">{{ category.name }}</span>
+            </div>
+            <h1 class="category-title">{{ category.name }}</h1>
+        </header>
+        <div class="category-content">
+            <aside class="filters-sidebar">
+                <div class="filter-section">
+                    <h3>Brand</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="brand" value="brand1">
+                            <span>Brand 1</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="brand" value="brand2">
+                            <span>Brand 2</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="filter-section">
+                    <h3>Price Range</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="0-100">
+                            <span>0 - 100 TL</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="101-200">
+                            <span>101 - 200 TL</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+            <div class="products-container">
+                <div class="products-header">
+                    <div class="product-count">{{ products|length }} Products</div>
+                    <div class="sort-options">
+                        <select name="sort" id="sort">
+                            <option value="popular">Most Popular</option>
+                            <option value="newest">Newest First</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="product-grid">
+                    {% for product in products %}
+                    <article class="product-card">
+                        <a href="{{ url_for('product_detail', product_id=product.id) }}">
+                            <div class="product-image">
+                                <img src="{{ product.image_url }}" alt="{{ product.title }}" loading="lazy">
+                                {% if product.original_price > product.price %}
+                                <span class="discount-badge">
+                                    {{ ((1 - product.price/product.original_price) * 100)|round|int }}% OFF
+                                </span>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="product-details">
+                                <h3 class="product-brand">{{ product.brand }}</h3>
+                                <p class="product-name">{{ product.title }}</p>
+                                <div class="product-price">
+                                    {% if product.original_price > product.price %}
+                                    <span class="original-price">{{ "{:,.2f}".format(product.original_price) }} TL</span>
+                                    {% endif %}
+                                    <span class="current-price">{{ "{:,.2f}".format(product.price) }} TL</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

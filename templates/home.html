@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Trendyol - Online Shopping{% endblock %}
+
+{% block content %}
+    <section class="featured-products">
+        <div class="section-header">
+            <h2 class="section-title">Featured Products</h2>
+            <a href="#" class="view-all">View All</a>
+        </div>        
+        <div class="product-grid">
+            {% for product in products %}
+            <article class="product-card">
+                <a href="{{ url_for('product_detail', product_id=product.id) }}">
+                    <div class="product-image">
+                        <img src="{{ product.image_url }}" alt="{{ product.title }}" loading="lazy">
+                        {% if product.original_price > product.price %}
+                        <span class="discount-badge">
+                            {{ ((1 - product.price/product.original_price) * 100)|round|int }}% OFF
+                        </span>
+                        {% endif %}
+                    </div>      
+                    <div class="product-details">
+                        <h3 class="product-brand">{{ product.brand }}</h3>
+                        <p class="product-name">{{ product.title }}</p>
+                        <div class="product-price">
+                            {% if product.original_price > product.price %}
+                            <span class="original-price">{{ "{:,.2f}".format(product.original_price) }} TL</span>
+                            {% endif %}
+                            <span class="current-price">{{ "{:,.2f}".format(product.price) }} TL</span>
+                        </div>
+                    </div>
+                </a>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

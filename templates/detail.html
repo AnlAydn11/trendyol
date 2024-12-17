@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}{{ product.title }} - Trendyol{% endblock %}
+{% block content %}
+<div class="product-page">
+    <nav class="breadcrumb">
+        <a href="{{ url_for('home') }}">Home</a>
+        <span class="separator">/</span>
+        <a href="{{ url_for('category', category_id=product.category_id) }}">{{ product.category_name }}</a>
+        <span class="separator">/</span>
+        <span class="current">{{ product.title }}</span>
+    </nav>
+
+    <div class="product-layout">
+        <div class="product-image">
+            <img src="{{ product.image_url }}" alt="{{ product.title }}">
+        </div>
+        <div class="product-info">
+            <h1 class="product-title">{{ product.title }}</h1>
+            <h2 class="product-brand">{{ product.brand }}</h2>
+            <div class="product-price-section">
+                {% if product.original_price > product.price %}
+                <div class="original-price">{{ "{:,.2f}".format(product.original_price) }} TL</div>
+                {% endif %}
+                <div class="current-price">{{ "{:,.2f}".format(product.price) }} TL</div>
+            </div>
+            <div class="product-description">
+                <p>{{ product.description }}</p>
+            </div>
+            <div class="product-actions">
+                <button class="add-to-cart-btn">Add to My Cart</button>
+                <button class="add-to-wishlist-btn">Add to My Wishlist</button>
+            </div>
+        </div>
+    </div>
+
+    {% if related_products %}
+    <section class="related-products">
+        <h2 class="section-title">Related Products</h2>
+        <div class="product-grid">
+            {% for related in related_products %}
+            <article class="product-card">
+                <a href="{{ url_for('product_detail', product_id=related.id) }}">
+                    <img src="{{ related.image_url }}" alt="{{ related.title }}">
+                    <div class="product-details">
+                        <h3>{{ related.title }}</h3>
+                        <p>{{ "{:,.2f}".format(related.price) }} TL</p>
+                    </div>
+                </a>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}

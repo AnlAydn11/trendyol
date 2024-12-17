@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}My Account - Trendyol{% endblock %}
+
+{% block content %}
+<div class="account-container">
+    <div class="account-header">
+        <h1>My Account</h1>
+        <a href="{{ url_for('edit_account') }}" class="edit-button">Edit Profile</a>
+    </div>
+    <div class="account-details">
+        <div class="detail-group">
+            <label>Email</label>
+            <p>{{ user.email }}</p>
+        </div>
+        <div class="detail-group">
+            <label>Name</label>
+            <p>{{ user.name or 'Not set' }}</p>
+        </div>
+        <div class="detail-group">
+            <label>Phone</label>
+            <p>{{ user.phone or 'Not set' }}</p>
+        </div>
+        <div class="detail-group">
+            <label>Address</label>
+            <p>{{ user.address or 'Not set' }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
